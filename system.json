@@ -1,0 +1,48 @@
+{
+  "id": "cor-system",
+  "title": "CoR System",
+  "description": "The CoR system for FoundryVTT!",
+  "authors": [
+    {
+      "name": "R4kiya",
+      "discord": "R4kiya"
+    },
+
+  ],
+  "url": "https://github.com/R4kiya/CoR",
+  "license": "LICENSE.txt",
+  "readme": "README.md",
+  "bugs": "Replace this with a link to file issues or tickets",
+  "changelog": "CHANGELOG.md",
+  "media": [
+    {
+      "type": "setup",
+      "url": "systems/cor-system/assets/anvil-impact.png",
+      "thumbnail": "systems/cor-system/assets/anvil-impact.png"
+    }
+  ],
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": 11,
+    "verified": "11.315"
+  },
+  "esmodules": ["module/cor-system.mjs"],
+  "styles": ["css/cor-system.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "packs": [],
+  "packFolders": [],
+  "socket": false,
+  "manifest": "https://raw.githubusercontent.com/R4kiya/CoR/main/system.json",
+  "download": "https://github.com/R4kiya/CoR/releases-0.0.1/cor-system_0.0.1",
+  "background": "systems/cor-system/assets/anvil-impact.png",
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "health",
+  "secondaryTokenAttribute": "power"
+}
