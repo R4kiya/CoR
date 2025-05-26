@@ -1,0 +1,29 @@
+{
+  "name": "cor",
+  "title": "Champions of Runeterra",
+  "id": "cor",
+  "version": "0.1.0",
+  "description": "Custom TTRPG system for Champions of Runeterra.",
+  "authors": [
+    {
+      "name": "R4kiya",
+      "email": "jevremocni@gmail.com"
+    }
+  ],
+  "esmodules": ["scripts/main.js"],
+  "styles": ["styles/cor.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "packs": [],
+  "license": "LICENSE.txt",
+  "compatibility": {
+    "minimum": "10",
+    "verified": "11"
+  },
+  "type": "system"
+}
