@@ -10,7 +10,7 @@
       "email": "jevremocni@gmail.com"
     }
   ],
-  "esmodules": ["scripts/main.js"],
+"esmodules": ["scripts/main.js"],
   "styles": ["styles/cor.css"],
   "languages": [
     {

@@ -1,32 +1,88 @@
 {
-"Actor": {
-  "types": ["character"],
-  "htmlFields": ["biography"],
-  "character": {
-    "biography": "",
-    "health": {
-      "value": 10,
-      "min": 0,
-      "max": 10
-    },
-    "power": {
-      "value": 5,
-      "min": 0,
-      "max": 5
-    },
-    "attributes": {},
-    "groups": {}
+  "Actor": {
+    "types": ["character"],
+    "htmlFields": ["biography"],
+    "character": {
+      "_comment": "=== Character Basics ===",
+      "biography": "",
+      "specialization": "",
+      "domain": "",
+      "img": "icons/svg/mystery-man.svg",
+
+      "_comment": "=== Attribute Modifiers and Dice ===",
+      "attributes": {
+        "power": { "modifier": 0, "dice": "1d4" },
+        "speed": { "modifier": 0, "dice": "1d4" },
+        "magic": { "modifier": 0, "dice": "1d4" }
+      },
+
+      "_comment": "=== Core Skills ===",
+      "skills": {
+        "presence": 0,
+        "agility": 0,
+        "awareness": 0,
+        "physique": 0,
+        "wits": 0,
+        "accuracy": 0
+      },
+
+      "_comment": "=== Resource Pools ===",
+      "sources": {
+        "power": 0,
+        "speed": 0,
+        "magic": 0,
+        "sourcePool": 0
+      },
+
+      "_comment": "=== Health ===",
+      "health": {
+        "hp": 5,
+        "damageOverTime": 0
+      },
+
+      "_comment": "=== Action Points ===",
+      "actionPoints": {
+        "max": 6,
+        "current": 6
+      },
+
+      "_comment": "=== Movement and Ranges ===",
+      "movement": 4,
+      "ranges": {
+        "base": 0,
+        "half": 0,
+        "double": 0,
+        "aoe": 0
+      },
+
+      "_comment": "=== Thresholds ===",
+      "thresholds": {
+        "material": { "low": 0, "medium": 0, "high": 0 },
+        "spirit": { "low": 0, "medium": 0, "high": 0 },
+        "healing": { "low": 0, "medium": 0, "high": 0 }
+      },
+
+      "_comment": "=== Ability Slots ===",
+      "slots": {
+        "power": 0,
+        "speed": 0,
+        "magic": 0,
+        "passive": 0
+      }
+    }
+  },
+
+  "Item": {
+    "types": ["item"],
+    "htmlFields": ["description"],
+    "item": {
+      "_comment": "=== Item Properties ===",
+      "description": "",
+      "quantity": 1,
+      "weight": 0,
+      "type": "",
+      "attributes": {},
+      "groups": {}
+    }
   }
-},
-"Item": {
-  "types": ["item"],
-  "htmlFields": ["description"],
-  "item": {
-    "description": "",
-    "quantity": 1,
-    "weight": 0,
-    "attributes": {},
-    "groups": {}
-  }
-}
 }

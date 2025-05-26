@@ -1,115 +1,100 @@
-<form class="flexcol {{cssClass}}" autocomplete="off">
-
-    {{!-- Sheet Header --}}
+<form class="actor-sheet" autocomplete="off" data-document="{{actor}}" data-type="Actor" submit-on-change>
     <header class="sheet-header">
-        <img class="profile-img" src="{{data.img}}" data-edit="img" title="{{data.name}}" height="100" width="100" />
-        <div class="header-fields">
-            <h1 class="charname">
-                <input name="name" type="text" value="{{data.name}}" placeholder="Name" />
-            </h1>
-            <div class="resource">
-                <input type="number" name="system.health.value" value="{{systemData.health.value}}"/>
-                <span> / </span>
-                <input type="number" name="system.health.max" value="{{systemData.health.max}}"/>
-            </div>
-            <div class="resource">
-                <input type="number" name="system.power.value" value="{{systemData.power.value}}"/>
-                <span> / </span>
-                <input type="number" name="system.power.max" value="{{systemData.power.max}}"/>
-            </div>
+      <div class="grid-2col">
+        <div>
+          <h1><input name="name" type="text" value="{{actor.name}}" placeholder="Champion Name" /></h1>
+          <label>Specialization:</label>
+          <input type="text" name="system.specialization" value="{{system.specialization}}" />
+          <label>Domain:</label>
+          <input type="text" name="system.domain" value="{{system.domain}}" />
         </div>
+        <div>
+          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
+        </div>
+      </div>
     </header>
-
-    {{!-- Sheet Tab Navigation --}}
-    <nav class="sheet-tabs tabs" data-group="primary">
-        <a class="item" data-tab="description">Description</a>
-        <a class="item" data-tab="items">Items</a>
-        <a class="item" data-tab="attributes">Attributes</a>
-    </nav>
-
-    {{!-- Sheet Body --}}
+  
     <section class="sheet-body">
-
-        {{!-- Biography Tab --}}
-        <div class="tab description" data-group="primary" data-tab="description">
-            {{editor biographyHTML target="system.biography" button=true editable=editable engine="prosemirror"}}
+  
+      <h2>Attributes</h2>
+      <div class="grid-3col">
+        <div>
+          <label>Power</label>
+          <input type="number" name="system.attributes.power.modifier" value="{{system.attributes.power.modifier}}" />
+          <input type="text" name="system.attributes.power.dice" value="{{system.attributes.power.dice}}" />
         </div>
-
-        {{!-- Owned Items Tab --}}
-        <div class="tab items" data-group="primary" data-tab="items">
-            <ol class="item-list">
-                {{#each data.items as |item id|}}
-                <li class="item flexrow" data-item-id="{{item._id}}">
-                    <img src="{{item.img}}" title="{{item.name}}" width="24" height="24" />
-                    <h4 class="item-name">{{item.name}}</h4>
-                    {{!-- Iterate through all attributes on the item and output buttons for any that are formula. --}}
-                    <div class="item-buttons">
-                        {{#each item.system.attributes as |itemAttr key|}}
-                        {{#if itemAttr.dtype}}
-                            {{#if itemAttr.isFormula}}
-                                {{!-- Use the items.name.key format for shorthand. --}}
-                                {{#if ../../shorthand}}
-                                <button class="item-button rollable" data-roll="@items.{{slugify item.name}}.{{key}}" data-label="{{ itemAttr.label }}"
-                                    title="{{itemAttr.value}}">{{itemAttr.label}}</button>
-                                {{!-- Use the items.name.attributes.key.value format otherwise. --}}
-                                {{else}}
-                                <button class="item-button rollable"
-                                    data-roll="@items.{{slugify item.name}}.attributes.{{key}}.value" data-label="{{ itemAttr.label }}"
-                                    title="{{itemAttr.value}}">{{itemAttr.label}}</button>
-                                {{/if}}
-                            {{/if}}
-                        {{else}}
-                            {{#each itemAttr as |itemGroupedAttr groupedKey|}}
-                                {{#if itemGroupedAttr.isFormula}}
-                                    {{!-- Use the items.name.key format for shorthand. --}}
-                                    {{#if ../../../shorthand}}
-                                    <button class="item-button rollable" data-roll="@items.{{slugify item.name}}.{{key}}.{{groupedKey}}" data-label="{{ itemGroupedAttr.label }}"
-                                        title="{{itemGroupedAttr.value}}">{{itemGroupedAttr.label}}</button>
-                                    {{!-- Use the items.name.attributes.key.value format otherwise. --}}
-                                    {{else}}
-                                    <button class="item-button rollable"
-                                        data-roll="@items.{{slugify item.name}}.attributes.{{key}}.{{groupedKey}}.value" data-label="{{ itemGroupedAttr.label }}"
-                                        title="{{itemGroupedAttr.value}}">{{itemGroupedAttr.label}}</button>
-                                    {{/if}}
-                                {{/if}}
-                            {{/each}}
-                        {{/if}}
-                        {{/each}}
-                    </div>
-                    <div class="item-controls">
-                        <a class="item-control" title="{{ localize "SIMPLE.ItemEdit" }}" data-action="edit"><i class="fas fa-edit"></i></a>
-                        <a class="item-control" title="{{ localize "SIMPLE.ItemDelete" }}" data-action="delete"><i class="fas fa-trash"></i></a>
-                    </div>
-                </li>
-                {{/each}}
-            </ol>
-            <p>
-                <a class="item-control" title="{{ localize "SIMPLE.ItemCreate" }}" data-action="create"><i class="fas fa-plus"></i> {{ localize "SIMPLE.ItemCreate" }}</a>
-            </p>
+        <div>
+          <label>Speed</label>
+          <input type="number" name="system.attributes.speed.modifier" value="{{system.attributes.speed.modifier}}" />
+          <input type="text" name="system.attributes.speed.dice" value="{{system.attributes.speed.dice}}" />
         </div>
-
-        {{!-- Attributes Tab --}}
-        <div class="tab attributes" data-group="primary" data-tab="attributes">
-            <header class="attributes-header flexrow">
-                <span class="attribute-key">{{localize "SIMPLE.AttributeKey"}}</span>
-                <span class="attribute-value">{{localize "SIMPLE.AttributeValue"}}</span>
-                <span class="attribute-label">{{localize "SIMPLE.AttributeLabel"}}</span>
-                <span class="attribute-dtype">{{localize "SIMPLE.AttributeDtype"}}</span>
-                <a class="attribute-control" data-action="create" data-group="{{group}}"><i class="fas fa-plus"></i></a>
-            </header>
-
-            {{!-- Render the attribute list partial. --}}
-            {{> "systems/worldbuilding/templates/parts/sheet-attributes.html" attributes=systemData.ungroupedAttributes dtypes=dtypes}}
-
-            {{!-- Render the grouped attributes partial and control. --}}
-            <div class="groups">
-                {{> "systems/worldbuilding/templates/parts/sheet-groups.html" attributes=systemData.groupedAttributes groups=systemData.groups dtypes=dtypes}}
-
-                <div class="group-controls flexrow">
-                    <input class="group-prefix" type="text" value=""/>
-                    <a class="button group-control" data-action="create-group"><i class="fas fa-plus"></i>Add Attribute Group</a>
-                </div>
-            </div>
+        <div>
+          <label>Magic</label>
+          <input type="number" name="system.attributes.magic.modifier" value="{{system.attributes.magic.modifier}}" />
+          <input type="text" name="system.attributes.magic.dice" value="{{system.attributes.magic.dice}}" />
         </div>
+      </div>
+  
+      <h2>Skills</h2>
+      <div class="grid-3col">
+        <div><label>Presence</label><input type="number" name="system.skills.presence" value="{{system.skills.presence}}" /></div>
+        <div><label>Agility</label><input type="number" name="system.skills.agility" value="{{system.skills.agility}}" /></div>
+        <div><label>Awareness</label><input type="number" name="system.skills.awareness" value="{{system.skills.awareness}}" /></div>
+        <div><label>Physique</label><input type="number" name="system.skills.physique" value="{{system.skills.physique}}" /></div>
+        <div><label>Wits</label><input type="number" name="system.skills.wits" value="{{system.skills.wits}}" /></div>
+        <div><label>Accuracy</label><input type="number" name="system.skills.accuracy" value="{{system.skills.accuracy}}" /></div>
+      </div>
+  
+      <h2>Resources</h2>
+      <div class="grid-2col">
+        <div><label>Power Source</label><input type="number" name="system.sources.power" value="{{system.sources.power}}" /></div>
+        <div><label>Speed Source</label><input type="number" name="system.sources.speed" value="{{system.sources.speed}}" /></div>
+        <div><label>Magic Source</label><input type="number" name="system.sources.magic" value="{{system.sources.magic}}" /></div>
+        <div><label>Source Pool</label><input type="number" name="system.sources.sourcePool" value="{{system.sources.sourcePool}}" /></div>
+      </div>
+  
+      <h2>Health</h2>
+      <div class="grid-2col">
+        <div><label>Hit Points</label><input type="number" name="system.health.hp" value="{{system.health.hp}}" /></div>
+        <div><label>Damage Over Time</label><input type="number" name="system.health.damageOverTime" value="{{system.health.damageOverTime}}" /></div>
+      </div>
+  
+      <h2>Combat</h2>
+      <div class="grid-2col">
+        <div><label>Action Points</label><input type="number" name="system.actionPoints.current" value="{{system.actionPoints.current}}" /></div>
+        <div><label>Movement</label><input type="number" name="system.movement" value="{{system.movement}}" /></div>
+      </div>
+  
+      <h2>Ranges</h2>
+      <div class="grid-2col">
+        <div><label>Base Range</label><input type="number" name="system.ranges.base" value="{{system.ranges.base}}" /></div>
+        <div><label>Half Range</label><input type="number" name="system.ranges.half" value="{{system.ranges.half}}" /></div>
+        <div><label>Double Range</label><input type="number" name="system.ranges.double" value="{{system.ranges.double}}" /></div>
+        <div><label>AOE</label><input type="number" name="system.ranges.aoe" value="{{system.ranges.aoe}}" /></div>
+      </div>
+  
+      <h2>Thresholds</h2>
+      <div class="grid-3col">
+        <div>
+          <label><strong>Material</strong></label>
+          <label>Low</label><input type="number" name="system.thresholds.material.low" value="{{system.thresholds.material.low}}" />
+          <label>Medium</label><input type="number" name="system.thresholds.material.medium" value="{{system.thresholds.material.medium}}" />
+          <label>High</label><input type="number" name="system.thresholds.material.high" value="{{system.thresholds.material.high}}" />
+        </div>
+        <div>
+          <label><strong>Spirit</strong></label>
+          <label>Low</label><input type="number" name="system.thresholds.spirit.low" value="{{system.thresholds.spirit.low}}" />
+          <label>Medium</label><input type="number" name="system.thresholds.spirit.medium" value="{{system.thresholds.spirit.medium}}" />
+          <label>High</label><input type="number" name="system.thresholds.spirit.high" value="{{system.thresholds.spirit.high}}" />
+        </div>
+        <div>
+          <label><strong>Healing</strong></label>
+          <label>Low</label><input type="number" name="system.thresholds.healing.low" value="{{system.thresholds.healing.low}}" />
+          <label>Medium</label><input type="number" name="system.thresholds.healing.medium" value="{{system.thresholds.healing.medium}}" />
+          <label>High</label><input type="number" name="system.thresholds.healing.high" value="{{system.thresholds.healing.high}}" />
+        </div>
+      </div>
+  
     </section>
-</form>
+  </form>
+  
