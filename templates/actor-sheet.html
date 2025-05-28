@@ -1,100 +1,101 @@
 <form class="actor-sheet" autocomplete="off" data-document="{{actor}}" data-type="Actor" submit-on-change>
-    <header class="sheet-header">
-      <div class="grid-2col">
-        <div>
-          <h1><input name="name" type="text" value="{{actor.name}}" placeholder="Champion Name" /></h1>
-          <label>Specialization:</label>
-          <input type="text" name="system.specialization" value="{{system.specialization}}" />
-          <label>Domain:</label>
-          <input type="text" name="system.domain" value="{{system.domain}}" />
-        </div>
-        <div>
-          <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
-        </div>
+  <header class="sheet-header">
+    <div class="grid-2col">
+      <div>
+        <h1><input name="name" type="text" value="{{actor.name}}" placeholder="Champion Name" /></h1>
+        <label>Specialization:</label>
+        <input type="text" name="system.specialization" value="{{system.specialization}}" />
+        <label>Domain:</label>
+        <input type="text" name="system.domain" value="{{system.domain}}" />
       </div>
-    </header>
-  
-    <section class="sheet-body">
-  
-      <h2>Attributes</h2>
-      <div class="grid-3col">
-        <div>
-          <label>Power</label>
-          <input type="number" name="system.attributes.power.modifier" value="{{system.attributes.power.modifier}}" />
-          <input type="text" name="system.attributes.power.dice" value="{{system.attributes.power.dice}}" />
-        </div>
-        <div>
-          <label>Speed</label>
-          <input type="number" name="system.attributes.speed.modifier" value="{{system.attributes.speed.modifier}}" />
-          <input type="text" name="system.attributes.speed.dice" value="{{system.attributes.speed.dice}}" />
-        </div>
-        <div>
-          <label>Magic</label>
-          <input type="number" name="system.attributes.magic.modifier" value="{{system.attributes.magic.modifier}}" />
-          <input type="text" name="system.attributes.magic.dice" value="{{system.attributes.magic.dice}}" />
-        </div>
+      <div>
+        <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" />
       </div>
-  
-      <h2>Skills</h2>
-      <div class="grid-3col">
-        <div><label>Presence</label><input type="number" name="system.skills.presence" value="{{system.skills.presence}}" /></div>
-        <div><label>Agility</label><input type="number" name="system.skills.agility" value="{{system.skills.agility}}" /></div>
-        <div><label>Awareness</label><input type="number" name="system.skills.awareness" value="{{system.skills.awareness}}" /></div>
-        <div><label>Physique</label><input type="number" name="system.skills.physique" value="{{system.skills.physique}}" /></div>
-        <div><label>Wits</label><input type="number" name="system.skills.wits" value="{{system.skills.wits}}" /></div>
-        <div><label>Accuracy</label><input type="number" name="system.skills.accuracy" value="{{system.skills.accuracy}}" /></div>
+    </div>
+  </header>
+
+  <section class="sheet-body">
+
+    <h2>Attributes (with debug)</h2>
+    <div class="grid-3col">
+      <div>
+        <label>Power</label>
+        <input type="number" name="system.attributes.power.modifier" value="{{system.attributes.power.modifier}}" />
+        <p class="debug">🎲 {{system.attributes.power.dice}} (max: {{system.attributes.power.diceMax}})</p>
       </div>
-  
-      <h2>Resources</h2>
-      <div class="grid-2col">
-        <div><label>Power Source</label><input type="number" name="system.sources.power" value="{{system.sources.power}}" /></div>
-        <div><label>Speed Source</label><input type="number" name="system.sources.speed" value="{{system.sources.speed}}" /></div>
-        <div><label>Magic Source</label><input type="number" name="system.sources.magic" value="{{system.sources.magic}}" /></div>
-        <div><label>Source Pool</label><input type="number" name="system.sources.sourcePool" value="{{system.sources.sourcePool}}" /></div>
+      <div>
+        <label>Speed</label>
+        <input type="number" name="system.attributes.speed.modifier" value="{{system.attributes.speed.modifier}}" />
+        <p class="debug">🎲 {{system.attributes.speed.dice}} (max: {{system.attributes.speed.diceMax}})</p>
       </div>
-  
-      <h2>Health</h2>
-      <div class="grid-2col">
-        <div><label>Hit Points</label><input type="number" name="system.health.hp" value="{{system.health.hp}}" /></div>
-        <div><label>Damage Over Time</label><input type="number" name="system.health.damageOverTime" value="{{system.health.damageOverTime}}" /></div>
+      <div>
+        <label>Magic</label>
+        <input type="number" name="system.attributes.magic.modifier" value="{{system.attributes.magic.modifier}}" />
+        <p class="debug">🎲 {{system.attributes.magic.dice}} (max: {{system.attributes.magic.diceMax}})</p>
       </div>
-  
-      <h2>Combat</h2>
-      <div class="grid-2col">
-        <div><label>Action Points</label><input type="number" name="system.actionPoints.current" value="{{system.actionPoints.current}}" /></div>
-        <div><label>Movement</label><input type="number" name="system.movement" value="{{system.movement}}" /></div>
+    </div>
+
+    <h2>Derived Stats</h2>
+    <div class="grid-3col">
+      <div>
+        <label>🟡 Action Points</label>
+        <p>{{system.actionPoints.max}}</p>
       </div>
-  
-      <h2>Ranges</h2>
-      <div class="grid-2col">
-        <div><label>Base Range</label><input type="number" name="system.ranges.base" value="{{system.ranges.base}}" /></div>
-        <div><label>Half Range</label><input type="number" name="system.ranges.half" value="{{system.ranges.half}}" /></div>
-        <div><label>Double Range</label><input type="number" name="system.ranges.double" value="{{system.ranges.double}}" /></div>
-        <div><label>AOE</label><input type="number" name="system.ranges.aoe" value="{{system.ranges.aoe}}" /></div>
+      <div>
+        <label>💨 Movement</label>
+        <p>{{system.movement}}</p>
       </div>
-  
-      <h2>Thresholds</h2>
-      <div class="grid-3col">
-        <div>
-          <label><strong>Material</strong></label>
-          <label>Low</label><input type="number" name="system.thresholds.material.low" value="{{system.thresholds.material.low}}" />
-          <label>Medium</label><input type="number" name="system.thresholds.material.medium" value="{{system.thresholds.material.medium}}" />
-          <label>High</label><input type="number" name="system.thresholds.material.high" value="{{system.thresholds.material.high}}" />
-        </div>
-        <div>
-          <label><strong>Spirit</strong></label>
-          <label>Low</label><input type="number" name="system.thresholds.spirit.low" value="{{system.thresholds.spirit.low}}" />
-          <label>Medium</label><input type="number" name="system.thresholds.spirit.medium" value="{{system.thresholds.spirit.medium}}" />
-          <label>High</label><input type="number" name="system.thresholds.spirit.high" value="{{system.thresholds.spirit.high}}" />
-        </div>
-        <div>
-          <label><strong>Healing</strong></label>
-          <label>Low</label><input type="number" name="system.thresholds.healing.low" value="{{system.thresholds.healing.low}}" />
-          <label>Medium</label><input type="number" name="system.thresholds.healing.medium" value="{{system.thresholds.healing.medium}}" />
-          <label>High</label><input type="number" name="system.thresholds.healing.high" value="{{system.thresholds.healing.high}}" />
-        </div>
+      <div>
+        <label>🏹 Base Range</label>
+        <p>{{system.ranges.base}}</p>
       </div>
-  
-    </section>
-  </form>
-  
+    </div>
+
+    <h2>Skills</h2>
+    <div class="grid-3col">
+      <div><label>Presence</label><input type="number" name="system.skills.presence" value="{{system.skills.presence}}" /></div>
+      <div><label>Agility</label><input type="number" name="system.skills.agility" value="{{system.skills.agility}}" /></div>
+      <div><label>Awareness</label><input type="number" name="system.skills.awareness" value="{{system.skills.awareness}}" /></div>
+      <div><label>Physique</label><input type="number" name="system.skills.physique" value="{{system.skills.physique}}" /></div>
+      <div><label>Accuracy</label><input type="number" name="system.skills.accuracy" value="{{system.skills.accuracy}}" /></div>
+      <div><label>Wits</label><input type="number" name="system.skills.wits" value="{{system.skills.wits}}" /></div>
+    </div>
+
+    <h2>Resources</h2>
+    <div class="grid-2col">
+      <div><label>Power Source</label><input type="number" name="system.sources.power" value="{{system.sources.power}}" /></div>
+      <div><label>Speed Source</label><input type="number" name="system.sources.speed" value="{{system.sources.speed}}" /></div>
+      <div><label>Magic Source</label><input type="number" name="system.sources.magic" value="{{system.sources.magic}}" /></div>
+      <div><label>Source Pool</label><input type="number" name="system.sources.sourcePool" value="{{system.sources.sourcePool}}" /></div>
+    </div>
+
+    <h2>Health</h2>
+    <div class="grid-2col">
+      <div><label>Hit Points</label><input type="number" name="system.health.hp" value="{{system.health.hp}}" /></div>
+      <div><label>Damage Over Time</label><input type="number" name="system.health.damageOverTime" value="{{system.health.damageOverTime}}" /></div>
+    </div>
+
+    <h2>Thresholds</h2>
+    <div class="grid-3col">
+      <div>
+        <label><strong>Material</strong></label>
+        <label>Low</label><input type="number" name="system.thresholds.material.low" value="{{system.thresholds.material.low}}" />
+        <label>Medium</label><input type="number" name="system.thresholds.material.medium" value="{{system.thresholds.material.medium}}" />
+        <label>High</label><input type="number" name="system.thresholds.material.high" value="{{system.thresholds.material.high}}" />
+      </div>
+      <div>
+        <label><strong>Spirit</strong></label>
+        <label>Low</label><input type="number" name="system.thresholds.spirit.low" value="{{system.thresholds.spirit.low}}" />
+        <label>Medium</label><input type="number" name="system.thresholds.spirit.medium" value="{{system.thresholds.spirit.medium}}" />
+        <label>High</label><input type="number" name="system.thresholds.spirit.high" value="{{system.thresholds.spirit.high}}" />
+      </div>
+      <div>
+        <label><strong>Healing</strong></label>
+        <label>Low</label><input type="number" name="system.thresholds.healing.low" value="{{system.thresholds.healing.low}}" />
+        <label>Medium</label><input type="number" name="system.thresholds.healing.medium" value="{{system.thresholds.healing.medium}}" />
+        <label>High</label><input type="number" name="system.thresholds.healing.high" value="{{system.thresholds.healing.high}}" />
+      </div>
+    </div>
+
+  </section>
+</form>

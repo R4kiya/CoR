@@ -11,9 +11,9 @@
 
       "_comment": "=== Attribute Modifiers and Dice ===",
       "attributes": {
-        "power": { "modifier": 0, "dice": "1d4" },
-        "speed": { "modifier": 0, "dice": "1d4" },
-        "magic": { "modifier": 0, "dice": "1d4" }
+        "power": { "modifier": 0, "dice": "1d4", "diceMax": 4 },
+        "speed": { "modifier": 0, "dice": "1d4", "diceMax": 4 },
+        "magic": { "modifier": 0, "dice": "1d4", "diceMax": 4 }
       },
 
       "_comment": "=== Core Skills ===",
